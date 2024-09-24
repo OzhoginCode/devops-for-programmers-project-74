@@ -25,6 +25,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          load: true
           file: Dockerfile.production
           tags: ${{ env.LATEST_TAG }}
 
