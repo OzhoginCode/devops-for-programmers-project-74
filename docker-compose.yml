@@ -5,3 +5,17 @@ services:
       context: .
       dockerfile: Dockerfile.production
     command: make test
+
+  db:
+    image: postgres:16.4
+    restart: always
+
+    shm_size: 128mb
+
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_PASSWORD: example
