@@ -22,13 +22,6 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build app
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: Dockerfile.production
-          tags: ${{ env.TEST_TAG }}
-      
       - name: Test
         run: |
           docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
@@ -36,6 +29,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          platforms: linux/amd64,linux/arm64
+          context: .
+          file: Dockerfile.production
           push: true
           tags: ${{ env.LATEST_TAG }}
