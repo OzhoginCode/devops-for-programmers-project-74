@@ -13,3 +13,20 @@ services:
     environment:
       NODE_ENV: development
     command: make dev
+
+  webserver:
+    image: caddy:2.8
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./app/dist:/etc/caddy/public
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+
+volumes:
+  caddy_data:
+  caddy_config:
