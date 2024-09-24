@@ -4,4 +4,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.production
-    command: make ci
+    command: make test
