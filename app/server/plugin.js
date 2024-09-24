@@ -28,6 +28,8 @@ const __dirname = fileURLToPath(path.dirname(import.meta.url));
 const mode = process.env.NODE_ENV || 'development';
 const isDevelopment = mode === 'development';
 
+console.log('DEBUG:', mode);
+
 const setUpDb = (app) => {
   app.decorate('db', db.sequelize);
   app.addHook('onClose', async () => {

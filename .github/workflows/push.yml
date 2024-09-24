@@ -21,9 +21,13 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Build image
+        run: |
+          make build
+
       - name: Test
         run: |
-          docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+          make ci
 
       - name: Build and push
         uses: docker/build-push-action@v6
