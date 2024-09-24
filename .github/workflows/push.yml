@@ -4,7 +4,7 @@ on:
   push:
 
 env:
-  LATEST_TAG: ozhogincode/devops-for-programmers-project-74:latest
+  APP_IMAGE_NAME: ozhogincode/devops-for-programmers-project-74:latest
 
 jobs:
   test:
@@ -24,10 +24,12 @@ jobs:
       - name: Build image
         uses: docker/build-push-action@v6
         with:
+          cache-from: type=registry,ref=${{ env.APP_IMAGE_NAME }}
+          cache-to: type=inline
           context: .
           load: true
           file: Dockerfile.production
-          tags: ${{ env.LATEST_TAG }}
+          tags: ${{ env.APP_IMAGE_NAME }}
 
       - name: Test
         run: |
@@ -39,4 +41,4 @@ jobs:
           context: .
           file: Dockerfile.production
           push: true
-          tags: ${{ env.LATEST_TAG }}
+          tags: ${{ env.APP_IMAGE_NAME }}
