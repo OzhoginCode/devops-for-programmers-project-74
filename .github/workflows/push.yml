@@ -21,8 +21,6 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - run: ls -la
-
       - name: Test
         run: |
           docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
