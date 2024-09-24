@@ -4,7 +4,6 @@ on:
   push:
 
 env:
-  TEST_TAG: ozhogincode/devops-for-programmers-project-74:test
   LATEST_TAG: ozhogincode/devops-for-programmers-project-74:latest
 
 jobs:
@@ -21,6 +20,8 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - run: ls -la
 
       - name: Test
         run: |
