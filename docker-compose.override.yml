@@ -14,7 +14,7 @@ services:
       NODE_ENV: development
     command: make dev
 
-  webserver:
+  caddy:
     image: caddy:2.8
     ports:
       - "80:80"
